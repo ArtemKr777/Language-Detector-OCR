@@ -1,4 +1,4 @@
-#ifndef LANGUAGEDETECTOR_H
+п»ї#ifndef LANGUAGEDETECTOR_H
 #define LANGUAGEDETECTOR_H
 
 #include <string>
@@ -17,7 +17,7 @@ public:
     void loadProfiles();
     DetectionResult detectLanguage(const std::string& rawText);
 
-    // Для получения дополнительной информации
+    // Р”Р»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё
     std::map<std::string, double> getLastDistances() const { return lastDistances; }
 
 private:

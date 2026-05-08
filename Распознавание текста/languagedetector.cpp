@@ -1,4 +1,4 @@
-#include "languagedetector.h"
+ï»¿#include "languagedetector.h"
 #include "utils.h"
 #include <cmath>
 #include <iostream>
@@ -27,8 +27,8 @@ double LanguageDetector::manhattanDistance(
     return dist;
 }
 
-// ÑÎÁÑÒÂÅÍÍÀß ĞÅÀËÈÇÀÖÈß ÑÎĞÒÈĞÎÂÊÈ ÏÓÇÛĞÜÊÎÌ
-// Ñîğòèğóåò âåêòîğ ïàğ ïî çíà÷åíèş (ğàññòîÿíèş) ïî âîçğàñòàíèş
+// Ğ¡ĞĞ‘Ğ¡Ğ¢Ğ’Ğ•ĞĞĞĞ¯ Ğ Ğ•ĞĞ›Ğ˜Ğ—ĞĞ¦Ğ˜Ğ¯ Ğ¡ĞĞ Ğ¢Ğ˜Ğ ĞĞ’ĞšĞ˜ ĞŸĞ£Ğ—Ğ«Ğ Ğ¬ĞšĞĞœ
+// Ğ¡Ğ¾Ñ€Ñ‚Ğ¸Ñ€ÑƒĞµÑ‚ Ğ²ĞµĞºÑ‚Ğ¾Ñ€ Ğ¿Ğ°Ñ€ Ğ¿Ğ¾ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ (Ñ€Ğ°ÑÑÑ‚Ğ¾ÑĞ½Ğ¸Ñ) Ğ¿Ğ¾ Ğ²Ğ¾Ğ·Ñ€Ğ°ÑÑ‚Ğ°Ğ½Ğ¸Ñ
 void bubbleSort(std::vector<std::pair<std::string, double>>& arr) {
     size_t n = arr.size();
     bool swapped;
@@ -36,14 +36,14 @@ void bubbleSort(std::vector<std::pair<std::string, double>>& arr) {
     for (size_t i = 0; i < n - 1; i++) {
         swapped = false;
         for (size_t j = 0; j < n - i - 1; j++) {
-            // Ñğàâíèâàåì ïî çíà÷åíèş (âòîğîé ıëåìåíò ïàğû)
+            // Ğ¡Ñ€Ğ°Ğ²Ğ½Ğ¸Ğ²Ğ°ĞµĞ¼ Ğ¿Ğ¾ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ (Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ¹ ÑĞ»ĞµĞ¼ĞµĞ½Ñ‚ Ğ¿Ğ°Ñ€Ñ‹)
             if (arr[j].second > arr[j + 1].second) {
-                // Îáìåí
+                // ĞĞ±Ğ¼ĞµĞ½
                 std::swap(arr[j], arr[j + 1]);
                 swapped = true;
             }
         }
-        // Åñëè íå áûëî îáìåíîâ, ìàññèâ óæå îòñîğòèğîâàí
+        // Ğ•ÑĞ»Ğ¸ Ğ½Ğµ Ğ±Ñ‹Ğ»Ğ¾ Ğ¾Ğ±Ğ¼ĞµĞ½Ğ¾Ğ², Ğ¼Ğ°ÑÑĞ¸Ğ² ÑƒĞ¶Ğµ Ğ¾Ñ‚ÑĞ¾Ñ€Ñ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½
         if (!swapped) break;
     }
 }
@@ -53,18 +53,18 @@ DetectionResult LanguageDetector::detectLanguage(const std::string& rawText) {
     result.language = "unknown";
     result.confidence = 0.0;
 
-    // 1. ÍÎĞÌÀËÈÇÀÖÈß ÒÅÊÑÒÀ
+    // 1. ĞĞĞ ĞœĞĞ›Ğ˜Ğ—ĞĞ¦Ğ˜Ğ¯ Ğ¢Ğ•ĞšĞ¡Ğ¢Ğ
     std::string normalized = Utils::normalizeText(rawText);
     if (normalized.length() < 20) {
         result.explanation = "Text too short after normalization (<20 letters).";
         return result;
     }
  
-    // 2. ÈÇÂËÅ×ÅÍÈÅ ÁÈÃĞÀÌÌ È ĞÀÑ×¨Ò ÂÅĞÎßÒÍÎÑÒÅÉ
+    // 2. Ğ˜Ğ—Ğ’Ğ›Ğ•Ğ§Ğ•ĞĞ˜Ğ• Ğ‘Ğ˜Ğ“Ğ ĞĞœĞœ Ğ˜ Ğ ĞĞ¡Ğ§ĞĞ¢ Ğ’Ğ•Ğ ĞĞ¯Ğ¢ĞĞĞ¡Ğ¢Ğ•Ğ™
     auto bigramCounts = Utils::extractBigrams(normalized);
     auto observedProbs = Utils::frequenciesToProbabilities(bigramCounts);
 
-    // 3. ĞÀÑ×¨Ò ĞÀÑÑÒÎßÍÈÉ ÄËß ÂÑÅÕ ßÇÛÊÎÂ
+    // 3. Ğ ĞĞ¡Ğ§ĞĞ¢ Ğ ĞĞ¡Ğ¡Ğ¢ĞĞ¯ĞĞ˜Ğ™ Ğ”Ğ›Ğ¯ Ğ’Ğ¡Ğ•Ğ¥ Ğ¯Ğ—Ğ«ĞšĞĞ’
     lastDistances.clear();
     std::vector<std::pair<std::string, double>> distanceList;
 
@@ -74,7 +74,7 @@ DetectionResult LanguageDetector::detectLanguage(const std::string& rawText) {
         distanceList.push_back({ prof.first, dist });
     }
 
-    // 4. ÑÎĞÒÈĞÎÂÊÀ ÏÎ ĞÀÑÑÒÎßÍÈŞ (ÑÎÁÑÒÂÅÍÍÀß ĞÅÀËÈÇÀÖÈß - ÏÓÇÛĞ¨Ê)
+    // 4. Ğ¡ĞĞ Ğ¢Ğ˜Ğ ĞĞ’ĞšĞ ĞŸĞ Ğ ĞĞ¡Ğ¡Ğ¢ĞĞ¯ĞĞ˜Ğ® (Ğ¡ĞĞ‘Ğ¡Ğ¢Ğ’Ğ•ĞĞĞĞ¯ Ğ Ğ•ĞĞ›Ğ˜Ğ—ĞĞ¦Ğ˜Ğ¯ - ĞŸĞ£Ğ—Ğ«Ğ ĞĞš)
     bubbleSort(distanceList);
 
     double bestDist = distanceList[0].second;
@@ -83,18 +83,18 @@ DetectionResult LanguageDetector::detectLanguage(const std::string& rawText) {
     double secondBestDist = distanceList[1].second;
     std::string secondBestLang = distanceList[1].first;
 
-    // 5. ÏĞÎÂÅĞÊÀ ÍÀ ÍÅÎÄÍÎÇÍÀ×ÍÎÑÒÜ
+    // 5. ĞŸĞ ĞĞ’Ğ•Ğ ĞšĞ ĞĞ ĞĞ•ĞĞ”ĞĞĞ—ĞĞĞ§ĞĞĞ¡Ğ¢Ğ¬
     const double AMBIGUITY_THRESHOLD = 0.05;
     bool isAmbiguous = (secondBestDist - bestDist) < AMBIGUITY_THRESHOLD;
 
-    // 6. ĞÀÑ×¨Ò ÓÂÅĞÅÍÍÎÑÒÈ
+    // 6. Ğ ĞĞ¡Ğ§ĞĞ¢ Ğ£Ğ’Ğ•Ğ Ğ•ĞĞĞĞ¡Ğ¢Ğ˜
     double maxPossibleDist = 1.0;
     double confidence = 1.0 - (bestDist / maxPossibleDist);
     if (confidence < 0.0) confidence = 0.0;
 
     const double CONF_THRESHOLD = 0.45;
 
-    // 7. ÏĞÈÍßÒÈÅ ĞÅØÅÍÈß
+    // 7. ĞŸĞ Ğ˜ĞĞ¯Ğ¢Ğ˜Ğ• Ğ Ğ•Ğ¨Ğ•ĞĞ˜Ğ¯
     if (confidence < CONF_THRESHOLD) {
         result.language = "unknown";
         result.confidence = confidence;
@@ -111,11 +111,11 @@ DetectionResult LanguageDetector::detectLanguage(const std::string& rawText) {
         return result;
     }
 
-    // 8. ÓÑÏÅØÍÎÅ ÎÏĞÅÄÅËÅÍÈÅ
+    // 8. Ğ£Ğ¡ĞŸĞ•Ğ¨ĞĞĞ• ĞĞŸĞ Ğ•Ğ”Ğ•Ğ›Ğ•ĞĞ˜Ğ•
     result.language = bestLang;
     result.confidence = confidence;
 
-    // Ôîğìèğóåì ïîÿñíåíèå ñî âñåìè ğàññòîÿíèÿìè
+    // Ğ¤Ğ¾Ñ€Ğ¼Ğ¸Ñ€ÑƒĞµĞ¼ Ğ¿Ğ¾ÑÑĞ½ĞµĞ½Ğ¸Ğµ ÑĞ¾ Ğ²ÑĞµĞ¼Ğ¸ Ñ€Ğ°ÑÑÑ‚Ğ¾ÑĞ½Ğ¸ÑĞ¼Ğ¸
     std::string exp = "Manhattan distances (all): ";
     for (const auto& d : distanceList) {
         exp += d.first + "=" + std::to_string(d.second) + "; ";

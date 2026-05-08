@@ -1,4 +1,4 @@
-#ifndef RECOGNIZER_H
+﻿#ifndef RECOGNIZER_H
 #define RECOGNIZER_H
 
 #include <string>

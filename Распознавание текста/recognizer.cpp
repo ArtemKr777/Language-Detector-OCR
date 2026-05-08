@@ -1,9 +1,9 @@
-#include "recognizer.h"
+ï»¿#include "recognizer.h"
 #include <leptonica/allheaders.h>
 #include <iostream>
 
-// Ïóòü ê ïàïêå tessdata
-static const std::string TESSDATA_PATH = "C:/Users/Admin/source/repos/Ðàñïîçíàâàíèå òåêñòà/Ðàñïîçíàâàíèå òåêñòà/tessdata";
+// ÐŸÑƒÑ‚ÑŒ Ðº Ð¿Ð°Ð¿ÐºÐµ tessdata
+static const std::string TESSDATA_PATH = "C:/Users/Admin/source/repos/Ð Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð²Ð°Ð½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð°/Ð Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð²Ð°Ð½Ð¸Ðµ Ñ‚ÐµÐºÑÑ‚Ð°/tessdata";
 
 TextRecognizer::TextRecognizer() : api(nullptr), initialized(false) {
     api = new tesseract::TessBaseAPI();
@@ -23,7 +23,7 @@ bool TextRecognizer::init(const std::string& languages) {
         return false;
     }
 
-    // Íàñòðîéêè äëÿ ìíîãîÿçû÷íîãî ðàñïîçíàâàíèÿ
+    // ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð´Ð»Ñ Ð¼Ð½Ð¾Ð³Ð¾ÑÐ·Ñ‹Ñ‡Ð½Ð¾Ð³Ð¾ Ñ€Ð°ÑÐ¿Ð¾Ð·Ð½Ð°Ð²Ð°Ð½Ð¸Ñ
     api->SetVariable("ocr_engine_mode", "1");  // OEM_LSTM_ONLY
     api->SetPageSegMode(tesseract::PSM_AUTO);
 
